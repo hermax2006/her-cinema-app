@@ -1,0 +1,233 @@
+
+        :root {
+            --color-dark: #1a1a2e; /* Fond sombre */
+            --color-medium: #16213e; /* Carte/Header légèrement plus clair */
+            --color-light: #e4e4e4;
+            --color-accent: #0f3460; /* Bleu foncé/indigo pour l'accent */
+            --color-focus: #1b73e8; /* Bleu clair au survol */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-dark);
+            color: var(--color-light);
+            margin: 0;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 95%; /* Légèrement plus large sur mobile */
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px 0;
+            border-bottom: 1px solid #333;
+            margin-bottom: 40px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--color-light);
+            margin-bottom: 20px;
+        }
+
+        .logo svg {
+            color: var(--color-focus);
+            margin-right: 10px;
+            width: 40px;
+            height: 40px;
+        }
+
+        /* Search Bar */
+        .search-form {
+            display: flex;
+            gap: 10px;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .search-form input {
+            flex-grow: 1;
+            padding: 12px 15px;
+            border: 1px solid #333;
+            border-radius: 8px;
+            background-color: #2b2c45;
+            color: var(--color-light);
+            font-size: 1rem;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .search-form input:focus {
+            outline: none;
+            border-color: var(--color-focus);
+            box-shadow: 0 0 0 3px rgba(27, 115, 232, 0.3);
+        }
+
+        .search-form button {
+            padding: 12px 18px;
+            border: none;
+            border-radius: 8px;
+            background-color: var(--color-focus);
+            color: white;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            transition: background-color 0.3s, transform 0.1s;
+            flex-shrink: 0; 
+        }
+
+        .search-form button:hover {
+            background-color: #0d47a1;
+            transform: translateY(-1px);
+        }
+
+        /* Grid des Films - AMÉLIORATIONS CLÉS POUR LA RÉPONSIVITÉ */
+        .movies-grid-wrapper {
+            /* Crée un conteneur pour centrer la grille entière si elle n'est pas pleine */
+            display: flex;
+            justify-content: center;
+            padding: 20px 0;
+        }
+        
+        .movies-grid {
+            display: grid;
+            /* La clé : Autoriser de 1 à 6 colonnes, chacune ayant au moins 250px de large */
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            width: 100%; /* S'assure qu'elle prend toute la largeur du wrapper */
+            max-width: 1400px; /* Limite la grille pour ne pas déborder */
+        }
+        
+        /* Titre de la section de l'aperçu */
+        .preview-title {
+            font-size: 1.8rem;
+            color: var(--color-light);
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        /* Carte de Film */
+        .movie-card {
+            background-color: var(--color-medium);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.6);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            animation: fadeIn 0.8s ease-out;
+            /* Assure que chaque carte prend l'espace du "minmax" */
+            min-width: 0; 
+        }
+
+        .movie-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 12px 25px rgba(27, 115, 232, 0.5); /* Ombre accent */
+        }
+
+        .movie-poster {
+            width: 100%;
+            height: 375px; /* Augmenté légèrement pour un meilleur look sur desktop */
+            object-fit: cover;
+            display: block;
+        }
+
+        .movie-info {
+            padding: 15px;
+        }
+
+        .movie-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin: 0 0 5px 0;
+            color: var(--color-light);
+            /* S'assure que le titre ne cause pas de débordement */
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .movie-year {
+            font-size: 0.9rem;
+            color: #999;
+            margin-bottom: 10px;
+        }
+
+        .movie-rating-container {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #ffc107;
+            font-weight: 700;
+        }
+        
+        /* Style pour les SVG inline */
+        .svg-icon {
+            margin-right: 5px;
+            width: 20px;
+            height: 20px;
+        }
+
+
+        /* Animations CSS */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive pour Tablette et Mobile large (max-width: 768px) */
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 2rem;
+            }
+            .movies-grid {
+                /* Sur les écrans moyens, une largeur min de 200px suffit pour 2-3 colonnes */
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 20px;
+            }
+            .movie-poster {
+                height: 300px; 
+            }
+        }
+        
+        /* Responsive pour Mobile petit (max-width: 480px) */
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 1.8rem;
+            }
+            .search-form {
+                /* Force la colonne pour un meilleur toucher */
+                flex-direction: column;
+                gap: 15px;
+            }
+            .search-form button {
+                width: 100%;
+                justify-content: center;
+            }
+            .movies-grid {
+                /* Force une grille à 2 colonnes avec des cartes plus petites pour un meilleur aperçu */
+                grid-template-columns: repeat(2, 1fr); 
+                gap: 15px;
+            }
+            .movie-poster {
+                height: 220px; /* Réduction encore plus forte pour les petits écrans */
+            }
+            .movie-title {
+                font-size: 1rem;
+            }
+            .movie-info {
+                padding: 10px;
+            }
+        }
+      
