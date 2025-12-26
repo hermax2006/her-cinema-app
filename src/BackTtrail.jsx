@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './HeroSlider.css';
+import './heroSlider.css';
 
 const heroMovies = [
   { id: "tt1856101", title: "Blade Runner 2049", url: "https://static.videezy.com/system/resources/previews/000/005/030/original/abstract_06.mp4", poster: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?q=80&w=1920", type: "hero" },
